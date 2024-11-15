@@ -33,3 +33,6 @@ class MainActivity : AppCompatActivity() {
 // halo gengs coba commit
 // semangat capstone
 //coba lagi
+
+// semangat dong semangat dong
+// maneh wae sendiri, aing mah cape
