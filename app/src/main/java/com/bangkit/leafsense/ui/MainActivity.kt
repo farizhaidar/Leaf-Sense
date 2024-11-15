@@ -30,3 +30,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+// halo gengs coba commit
+// semangat capstone
