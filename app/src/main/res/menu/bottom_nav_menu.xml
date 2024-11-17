@@ -8,7 +8,7 @@
         />
 
     <item
-        android:title="Scan" />
+        android:title="@string/scan" />
 
     <item
         android:id="@+id/navigation_profil"

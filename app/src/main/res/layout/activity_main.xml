@@ -31,10 +31,10 @@
         android:elevation="8dp"
         android:padding="20dp"
         android:backgroundTint="@color/ijo_muda"
-        android:tint="@color/ijo_tua"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:tint="@color/ijo_tua" />
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
