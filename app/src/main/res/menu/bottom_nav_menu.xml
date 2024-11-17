@@ -8,6 +8,9 @@
         />
 
     <item
+        android:title="Scan" />
+
+    <item
         android:id="@+id/navigation_profil"
         android:icon="@drawable/profil"
         android:title="@string/title_profil" />
