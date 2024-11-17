@@ -3,14 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="backgroundColor">#F5F5F5</color>
-
     <color name="primaryTextColor">#212121</color>
-
     <color name="editTextBackgroundTint">#BDBDBD</color>
-
     <color name="buttonColor">#3F51B5</color>
-
     <color name="accentTextColor">#FF4081</color>
-
     <color name="blue">#2196F3</color>
+    <color name="sunset">#EEA83B</color>
+    <color name="ijo_muda">#E3FDAB</color>
+    <color name="ijo_tua">#0C451A</color>
 </resources>
