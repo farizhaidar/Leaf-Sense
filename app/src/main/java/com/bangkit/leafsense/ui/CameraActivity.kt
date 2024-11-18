@@ -54,7 +54,6 @@ class CameraActivity : AppCompatActivity() {
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                // Menampilkan alasan mengapa izin kamera dibutuhkan
                 Toast.makeText(this, "Izin kamera diperlukan untuk mengambil foto.", Toast.LENGTH_SHORT).show()
             }
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
@@ -95,9 +94,8 @@ class CameraActivity : AppCompatActivity() {
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
             override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                imageUri = output.savedUri // Mendapatkan URI gambar yang disimpan
+                imageUri = output.savedUri
 
-                // Pastikan URI tidak null
                 if (imageUri != null) {
                     binding.previewImage.setImageURI(imageUri)
                     binding.previewImage.visibility = View.VISIBLE
@@ -131,12 +129,11 @@ class CameraActivity : AppCompatActivity() {
     private fun onSaveClicked() {
         binding.imageActionButtons.visibility = View.GONE
 
-        // Pastikan imageUri tidak null sebelum melanjutkan
         imageUri?.let {
             Toast.makeText(this, "Gambar disimpan!", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, ResultActivity::class.java).apply {
-                putExtra(ResultActivity.EXTRA_IMAGE_URI, it.toString()) // Kirim URI sebagai string ke ResultActivity
+                putExtra(ResultActivity.EXTRA_IMAGE_URI, it.toString())
             }
 
             startActivity(intent)
@@ -182,7 +179,6 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Melepaskan sumber daya kamera ketika activity dihancurkan
         val cameraProvider = ProcessCameraProvider.getInstance(this).get()
         cameraProvider.unbindAll()
     }
