@@ -13,20 +13,32 @@
     <ImageView
         android:id="@+id/previewImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_height="500dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
         android:visibility="gone"
         android:scaleType="centerCrop"
-        android:contentDescription="Preview Image" />
+        android:contentDescription="Preview Image"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/btnGallery"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toStartOf="@+id/captureImage"
+        app:layout_constraintTop_toTopOf="@+id/captureImage"
+        app:layout_constraintBottom_toBottomOf="@+id/captureImage"
+        android:layout_marginEnd="56dp"/>
 
     <ImageView
         android:id="@+id/captureImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="32dp"
         app:srcCompat="@drawable/ic_capture" />
 
     <ImageView
@@ -68,8 +80,6 @@
             android:contentDescription="Simpan"
             android:visibility="gone"
             android:layout_marginStart="32dp" />
-s
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

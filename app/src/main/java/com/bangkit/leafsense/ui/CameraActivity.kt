@@ -13,6 +13,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -32,6 +33,25 @@ class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
     private var imageUri: Uri? = null
 
+    private val getImageFromGallery = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            imageUri = it
+            binding.previewImage.setImageURI(imageUri)
+            binding.previewImage.visibility = View.VISIBLE
+
+            binding.imageActionButtons.visibility = View.VISIBLE
+            binding.captureImage.visibility = View.GONE
+            binding.switchCamera.visibility = View.GONE
+            binding.btnGallery.visibility = View.GONE
+            binding.saveIcon.visibility = View.VISIBLE
+            binding.retakeIcon.visibility = View.VISIBLE
+
+            stopCamera()
+        } ?: run {
+            Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkCameraPermission()
@@ -49,6 +69,10 @@ class CameraActivity : AppCompatActivity() {
         }
 
         binding.captureImage.setOnClickListener { takePhoto() }
+
+        binding.btnGallery.setOnClickListener {
+            getImageFromGallery.launch("image/*")
+        }
     }
 
     private fun checkCameraPermission() {
@@ -103,9 +127,12 @@ class CameraActivity : AppCompatActivity() {
                     binding.imageActionButtons.visibility = View.VISIBLE
                     binding.captureImage.visibility = View.GONE
                     binding.switchCamera.visibility = View.GONE
+                    binding.btnGallery.visibility = View.GONE
 
                     binding.saveIcon.visibility = View.VISIBLE
                     binding.retakeIcon.visibility = View.VISIBLE
+
+                    stopCamera()
                 } else {
                     Toast.makeText(this@CameraActivity, "Gagal menyimpan gambar.", Toast.LENGTH_SHORT).show()
                 }
@@ -118,11 +145,21 @@ class CameraActivity : AppCompatActivity() {
         })
     }
 
+    private fun stopCamera() {
+        // Memastikan bahwa kamera dihentikan dengan membebaskan semua sumber daya kamera
+        val cameraProvider = ProcessCameraProvider.getInstance(this).get()
+        cameraProvider.unbindAll()
+        binding.viewFinder.visibility = View.GONE // Menyembunyikan preview kamera
+        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.black)) // Menetapkan warna hitam
+
+    }
+
     private fun onRetakeClicked() {
         binding.previewImage.visibility = View.GONE
         binding.imageActionButtons.visibility = View.GONE
         binding.captureImage.visibility = View.VISIBLE
         binding.switchCamera.visibility = View.VISIBLE
+        binding.btnGallery.visibility = View.VISIBLE
         startCamera()
     }
 
