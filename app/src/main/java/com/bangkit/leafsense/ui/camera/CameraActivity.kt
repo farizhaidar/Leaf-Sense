@@ -1,4 +1,4 @@
-package com.bangkit.leafsense.ui
+package com.bangkit.leafsense.ui.camera
 
 import android.Manifest
 import android.content.Intent
@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat
 import com.bangkit.leafsense.R
 import com.bangkit.leafsense.createCustomTempFile
 import com.bangkit.leafsense.databinding.ActivityCameraBinding
-import java.io.File
+import com.bangkit.leafsense.ui.ResultActivity
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
@@ -48,7 +48,7 @@ class CameraActivity : AppCompatActivity() {
 
             stopCamera()
         } ?: run {
-            Toast.makeText(this, "Gagal memilih gambar.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, " Tidak ada gambar yang dipilih.", Toast.LENGTH_SHORT).show()
         }
     }
 

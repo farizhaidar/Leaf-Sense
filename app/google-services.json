@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "704731417620",
+    "project_id": "leaf-sense-2637f",
+    "storage_bucket": "leaf-sense-2637f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704731417620:android:3d7ee4f24e3028ace1ab01",
+        "android_client_info": {
+          "package_name": "com.bangkit.leafsense"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5gT8xYeKfLoBjOLhNcMDOkwt4kgKdmCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

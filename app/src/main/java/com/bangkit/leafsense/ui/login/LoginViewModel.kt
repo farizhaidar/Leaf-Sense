@@ -7,10 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.bangkit.leafsense.AuthRepository
 import com.bangkit.leafsense.Result
 import com.bangkit.leafsense.data.response.LoginResponse
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
+class LoginViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
     private val _loginResult = MutableLiveData<Result<String>>()
     val loginResult: LiveData<Result<String>> = _loginResult
@@ -19,17 +20,19 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
         viewModelScope.launch {
             _loginResult.value = Result.Loading
             try {
-                val response: Response<LoginResponse> = authRepository.login(email, password)
-                if (response.isSuccessful) {
-                    val token = response.body()?.loginResult?.token
-                    if (!token.isNullOrEmpty()) {
-                        _loginResult.value = Result.Success(token)
-                    } else {
-                        _loginResult.value = Result.Error("Token is empty")
+                firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val user = firebaseAuth.currentUser
+                            if (user != null) {
+                                _loginResult.value = Result.Success("Login successful")
+                            } else {
+                                _loginResult.value = Result.Error("User not found")
+                            }
+                        } else {
+                            _loginResult.value = Result.Error(task.exception?.message ?: "Login failed")
+                        }
                     }
-                } else {
-                    _loginResult.value = Result.Error(response.message() ?: "Login error")
-                }
             } catch (e: Exception) {
                 _loginResult.value = Result.Error(e.message ?: "An error occurred")
             }

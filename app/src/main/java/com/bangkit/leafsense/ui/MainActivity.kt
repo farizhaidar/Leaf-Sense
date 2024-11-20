@@ -15,7 +15,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.bangkit.leafsense.R
 import com.bangkit.leafsense.databinding.ActivityMainBinding
-import com.bangkit.leafsense.ui.CameraActivity.Companion.CAMERAX_RESULT
+import com.bangkit.leafsense.ui.camera.CameraActivity
+import com.bangkit.leafsense.ui.camera.CameraActivity.Companion.CAMERAX_RESULT
 
 class MainActivity : AppCompatActivity() {
 

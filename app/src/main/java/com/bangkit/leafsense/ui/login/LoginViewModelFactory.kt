@@ -3,11 +3,13 @@ package com.bangkit.leafsense.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.leafsense.AuthRepository
+import com.google.firebase.auth.FirebaseAuth
 
-class ViewModelFactory(private val authRepository: AuthRepository) : ViewModelProvider.Factory {
+class LoginViewModelFactory(private val firebaseAuth: FirebaseAuth) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(authRepository) as T
+            @Suppress("UNCHECKED_CAST")
+            return LoginViewModel(firebaseAuth) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
