@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bangkit.leafsense.AuthRepository
 import com.bangkit.leafsense.Result
-import com.bangkit.leafsense.data.response.LoginResponse
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import retrofit2.Response

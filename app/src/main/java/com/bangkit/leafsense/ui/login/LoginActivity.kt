@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.bangkit.leafsense.AuthRepository
 import com.bangkit.leafsense.Result
 import com.bangkit.leafsense.data.api.ApiConfig
 import com.bangkit.leafsense.databinding.ActivityLoginBinding
