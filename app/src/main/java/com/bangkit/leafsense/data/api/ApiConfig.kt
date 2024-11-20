@@ -15,7 +15,7 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
 
-            val retrofit = Retrofit.Builder().baseUrl("https://story-api.dicoding.dev/v1/")
+            val retrofit = Retrofit.Builder().baseUrl("https://leaf-sense-api-7l3mig7ida-et.a.run.app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
