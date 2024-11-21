@@ -5,20 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.profil.ProfilFragment">
 
-    <!-- Background Container -->
-    <View
-        android:id="@+id/top_view"
-        android:layout_width="342dp"
-        android:layout_height="644dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/kotak_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Profile Image -->
 
     <!-- Name Input Container -->
 
@@ -37,7 +26,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nameContainer"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/white"
@@ -74,7 +63,7 @@
     <!-- Email Input Container -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/emailContainer"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
@@ -111,7 +100,7 @@
     <!-- Password Input Container -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/passwordContainer"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
