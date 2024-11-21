@@ -22,4 +22,21 @@ class UserPreference(context: Context) {
     fun isLoggedIn(): Boolean {
         return sharedPreferences.getBoolean("isLoggedIn", false)
     }
+
+    companion object {
+        private const val PREFS_NAME = "user_prefs"
+        private const val KEY_IS_LOGGED_IN = "is_logged_in"
+
+        @Volatile
+        private var INSTANCE: UserPreference? = null
+
+        fun getInstance(context: Context): UserPreference {
+            return INSTANCE ?: synchronized(this) {
+                val instance = UserPreference(context)
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+
 }
