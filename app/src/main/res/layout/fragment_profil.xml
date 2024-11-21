@@ -10,7 +10,6 @@
 
 
     <!-- Name Input Container -->
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="150dp"
@@ -27,7 +26,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nameContainer"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginTop="24dp"
         android:background="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,14 +35,14 @@
 
         <ImageView
             android:id="@+id/nameIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_baseline_person_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/darker_gray" />
+            app:tint="@color/ijo_tua" />
 
         <TextView
             android:id="@+id/nameDisplay"
@@ -51,9 +50,8 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="Your Name"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:padding="16dp"
-            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/nameIcon"
@@ -64,7 +62,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/emailContainer"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,14 +71,14 @@
 
         <ImageView
             android:id="@+id/emailIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_baseline_email_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/darker_gray" />
+            app:tint="@color/ijo_tua"/>
 
         <TextView
             android:id="@+id/emailDisplay"
@@ -88,52 +86,14 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="Email"
-        android:textSize="16sp"
-       android:padding="16dp"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/emailIcon"
-        app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Password Input Container -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/passwordContainer"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailContainer">
-
-        <ImageView
-            android:id="@+id/passwordIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_baseline_lock_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/passwordDisplay"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:text="Password"
-            android:textSize="16sp"
-            android:ellipsize="end"
-            android:padding="16dp"
-            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+           android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/passwordIcon"
+            app:layout_constraintStart_toEndOf="@id/emailIcon"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- Logout Button -->
     <Button
@@ -144,6 +104,6 @@
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordContainer" />
+        app:layout_constraintTop_toBottomOf="@id/emailContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,9 +22,17 @@
         android:theme="@style/Theme.LeafSense"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ResultActivity"
+            android:name=".ui.leaf.StrawberryActivity"
             android:exported="false" />
-        <!-- FileProvider configuration -->
+        <activity
+            android:name=".ui.leaf.CoffeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.leaf.TeaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ResultActivity"
+            android:exported="false" /> <!-- FileProvider configuration -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.bangkit.leafsense.provider"
@@ -56,7 +64,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
