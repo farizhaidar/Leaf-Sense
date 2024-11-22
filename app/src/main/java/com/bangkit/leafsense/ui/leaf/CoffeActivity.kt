@@ -38,9 +38,13 @@ class CoffeActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
-                        val filteredArticles = articles.filterNotNull()
-                        articlesAdapter = ArticlesAdapter(filteredArticles)
-                        binding.verticalRecyclerView.adapter = articlesAdapter
+                        val filteredArticles = articles.filterNotNull().filter { it.plantType == "Kopi" }
+                        if (filteredArticles.isNotEmpty()) {
+                            articlesAdapter = ArticlesAdapter(filteredArticles)
+                            binding.verticalRecyclerView.adapter = articlesAdapter
+                        } else {
+                            Toast.makeText(this@CoffeActivity, "No articles found for Kopi", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     Toast.makeText(this@CoffeActivity, "Failed to load articles", Toast.LENGTH_SHORT).show()

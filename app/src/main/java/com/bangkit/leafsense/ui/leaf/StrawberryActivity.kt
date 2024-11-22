@@ -38,9 +38,13 @@ class StrawberryActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
-                        val filteredArticles = articles.filterNotNull()
-                        articlesAdapter = ArticlesAdapter(filteredArticles)
-                        binding.verticalRecyclerView.adapter = articlesAdapter
+                        val filteredArticles = articles.filterNotNull().filter { it.plantType == "Stroberi" }
+                        if (filteredArticles.isNotEmpty()) {
+                            articlesAdapter = ArticlesAdapter(filteredArticles)
+                            binding.verticalRecyclerView.adapter = articlesAdapter
+                        } else {
+                            Toast.makeText(this@StrawberryActivity, "No articles found for Strawberry", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     Toast.makeText(this@StrawberryActivity, "Failed to load articles", Toast.LENGTH_SHORT).show()

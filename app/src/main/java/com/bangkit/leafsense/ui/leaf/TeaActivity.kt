@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.leafsense.R
 import com.bangkit.leafsense.data.api.ApiConfig
 import com.bangkit.leafsense.data.response.ArticlesResponse
 import com.bangkit.leafsense.databinding.ActivityTeaBinding
@@ -17,7 +16,6 @@ class TeaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTeaBinding
     private lateinit var articlesAdapter: ArticlesAdapter
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +35,13 @@ class TeaActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
-                        val filteredArticles = articles.filterNotNull()
-                        articlesAdapter = ArticlesAdapter(filteredArticles)
-                        binding.verticalRecyclerView.adapter = articlesAdapter
+                        val filteredArticles = articles.filterNotNull().filter { it.plantType == "Teh" }
+                        if (filteredArticles.isNotEmpty()) {
+                            articlesAdapter = ArticlesAdapter(filteredArticles)
+                            binding.verticalRecyclerView.adapter = articlesAdapter
+                        } else {
+                            Toast.makeText(this@TeaActivity, "No articles found for Teh", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     Toast.makeText(this@TeaActivity, "Failed to load articles", Toast.LENGTH_SHORT).show()
