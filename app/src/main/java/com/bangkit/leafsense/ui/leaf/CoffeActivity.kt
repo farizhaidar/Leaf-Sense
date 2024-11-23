@@ -2,10 +2,7 @@ package com.bangkit.leafsense.ui.leaf
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.leafsense.R
 import com.bangkit.leafsense.data.api.ApiConfig
@@ -40,7 +37,7 @@ class CoffeActivity : AppCompatActivity() {
                     response.body()?.data?.let { articles ->
                         val filteredArticles = articles.filterNotNull().filter { it.plantType == "Kopi" }
                         if (filteredArticles.isNotEmpty()) {
-                            articlesAdapter = ArticlesAdapter(filteredArticles)
+                            articlesAdapter = ArticlesAdapter(filteredArticles, this@CoffeActivity)
                             binding.verticalRecyclerView.adapter = articlesAdapter
                         } else {
                             Toast.makeText(this@CoffeActivity, "No articles found for Kopi", Toast.LENGTH_SHORT).show()

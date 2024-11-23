@@ -37,7 +37,7 @@ class TeaActivity : AppCompatActivity() {
                     response.body()?.data?.let { articles ->
                         val filteredArticles = articles.filterNotNull().filter { it.plantType == "Teh" }
                         if (filteredArticles.isNotEmpty()) {
-                            articlesAdapter = ArticlesAdapter(filteredArticles)
+                            articlesAdapter = ArticlesAdapter(filteredArticles, this@TeaActivity)
                             binding.verticalRecyclerView.adapter = articlesAdapter
                         } else {
                             Toast.makeText(this@TeaActivity, "No articles found for Teh", Toast.LENGTH_SHORT).show()

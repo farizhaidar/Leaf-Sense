@@ -40,7 +40,7 @@ class StrawberryActivity : AppCompatActivity() {
                     response.body()?.data?.let { articles ->
                         val filteredArticles = articles.filterNotNull().filter { it.plantType == "Stroberi" }
                         if (filteredArticles.isNotEmpty()) {
-                            articlesAdapter = ArticlesAdapter(filteredArticles)
+                            articlesAdapter = ArticlesAdapter(filteredArticles, this@StrawberryActivity)
                             binding.verticalRecyclerView.adapter = articlesAdapter
                         } else {
                             Toast.makeText(this@StrawberryActivity, "No articles found for Strawberry", Toast.LENGTH_SHORT).show()

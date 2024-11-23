@@ -1,6 +1,5 @@
 package com.bangkit.leafsense.ui.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -32,11 +31,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         _binding = FragmentHomeBinding.bind(view)
 
-        // Get the current Firebase user
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userName = currentUser?.displayName ?: "User"
 
-        // Update the TextView with user's name
         binding.userText.text = "Halo $userName!"
 
         binding.verticalRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -74,7 +71,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
                         val filteredArticles = articles.filterNotNull()
-                        articlesAdapter = ArticlesAdapter(filteredArticles)
+                        articlesAdapter = ArticlesAdapter(filteredArticles, requireContext())
                         binding.verticalRecyclerView.adapter = articlesAdapter
                     }
                 } else {

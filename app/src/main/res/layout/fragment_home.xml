@@ -179,7 +179,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:orientation="horizontal" />
+        android:orientation="vertical" />
 
 
     <com.airbnb.lottie.LottieAnimationView
