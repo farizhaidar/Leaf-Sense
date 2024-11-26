@@ -1,38 +1,49 @@
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivArticleImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="centerCrop"/>
+            android:layout_height="300dp"
+            android:transitionName="shared_photo"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            android:textSize="20sp"
+            android:paddingTop="16dp" />
 
         <TextView
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"/>
+            android:textSize="16sp"
+            android:paddingTop="8dp" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loadingAnimation"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_animation"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+
+</ScrollView>

@@ -32,7 +32,7 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvTitle.text = it.title
                 binding.tvContent.text = it.content
                 Glide.with(this).load(it.imageUrl).into(binding.ivArticleImage)
-                binding.progressBar.visibility = View.GONE
+                showLoading(false)
             }
         })
 
@@ -42,16 +42,23 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun loadArticleDetail(articleId: String) {
-        binding.progressBar.visibility = View.VISIBLE
-
+        showLoading(true)
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val response = ApiConfig.getApiService().getArticleDetail(articleId)
                 viewModel.setDetailData(response)
             } catch (e: Exception) {
-                binding.progressBar.visibility = View.GONE
+                showLoading(false)
                 Toast.makeText(this@DetailActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingAnimation.visibility = View.VISIBLE
+        } else {
+            binding.loadingAnimation.visibility = View.GONE
         }
     }
 }

@@ -1,13 +1,10 @@
 package com.bangkit.leafsense.ui.leaf
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.leafsense.R
 import com.bangkit.leafsense.data.api.ApiConfig
 import com.bangkit.leafsense.data.response.ArticlesResponse
 import com.bangkit.leafsense.databinding.ActivityTeaBinding
@@ -34,8 +31,10 @@ class StrawberryActivity : AppCompatActivity() {
     }
 
     private fun fetchArticles() {
+        showLoading(true)
         ApiConfig.getApiService().getArticles().enqueue(object : Callback<ArticlesResponse> {
             override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
+                showLoading(false)
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
                         val filteredArticles = articles.filterNotNull().filter { it.plantType == "Stroberi" }
@@ -52,8 +51,19 @@ class StrawberryActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ArticlesResponse>, t: Throwable) {
+                showLoading(false)
                 Toast.makeText(this@StrawberryActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingAnimation.visibility = View.VISIBLE
+            binding.verticalRecyclerView.visibility = View.GONE
+        } else {
+            binding.loadingAnimation.visibility = View.GONE
+            binding.verticalRecyclerView.visibility = View.VISIBLE
+        }
     }
 }
