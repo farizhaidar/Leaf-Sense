@@ -40,14 +40,12 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         binding.nameDisplay.text = userName
         binding.emailDisplay.text = userEmail
 
-        // Menangani tombol logout
         binding.btnlogout.setOnClickListener {
             profileViewModel.logout()
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-
     }
 
     private fun getUserProfileData() {
@@ -56,20 +54,20 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
             val userRef = firestore.collection("users").document(userId)
             userRef.get()
                 .addOnSuccessListener { document ->
-                    if (document.exists()) {
-                        // Mengambil data dari Firestore
-                        val userName = document.getString("name") ?: "Nama tidak tersedia"
-                        val userEmail = document.getString("email") ?: "Email tidak tersedia"
-                        val userAge = document.getString("age") ?: "Usia tidak tersedia"
-                        val userJob = document.getString("job") ?: "Pekerjaan tidak tersedia"
+                    if (isAdded) {
+                        if (document.exists()) {
+                            val userName = document.getString("name") ?: "Nama tidak tersedia"
+                            val userEmail = document.getString("email") ?: "Email tidak tersedia"
+                            val userAge = document.getString("age") ?: "Usia tidak tersedia"
+                            val userJob = document.getString("job") ?: "Pekerjaan tidak tersedia"
 
-                        // Menampilkan data di UI
-                        binding.nameDisplay.text = userName
-                        binding.emailDisplay.text = userEmail
-                        binding.AgeDisplay.text = userAge
-                        binding.JobDisplay.text = userJob
-                    } else {
-                        Toast.makeText(requireContext(), "User data not found", Toast.LENGTH_SHORT).show()
+                            binding.nameDisplay.text = userName
+                            binding.emailDisplay.text = userEmail
+                            binding.AgeDisplay.text = userAge
+                            binding.JobDisplay.text = userJob
+                        } else {
+                            Toast.makeText(requireContext(), "User data not found", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
                 .addOnFailureListener {

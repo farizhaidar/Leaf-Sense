@@ -160,6 +160,7 @@ class CameraActivity : AppCompatActivity() {
         binding.captureImage.visibility = View.VISIBLE
         binding.switchCamera.visibility = View.VISIBLE
         binding.btnGallery.visibility = View.VISIBLE
+        binding.viewFinder.visibility = View.VISIBLE
         startCamera()
     }
 
