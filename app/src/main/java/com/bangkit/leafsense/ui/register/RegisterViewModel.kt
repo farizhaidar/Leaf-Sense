@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.bangkit.leafsense.Result
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
@@ -14,7 +15,9 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
     private val _registerResult = MutableLiveData<Result<String>>()
     val registerResult: LiveData<Result<String>> = _registerResult
 
-    fun register(name: String, email: String, password: String) {
+    private val firestore = FirebaseFirestore.getInstance()
+
+    fun register(name: String, email: String, password: String, age: String, job: String) {
         _registerResult.value = Result.Loading
 
         viewModelScope.launch {
@@ -30,7 +33,7 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             firebaseUser?.updateProfile(profileUpdates)
                                 ?.addOnCompleteListener { updateTask ->
                                     if (updateTask.isSuccessful) {
-                                        _registerResult.value = Result.Success("Registration successful")
+                                        saveUserToFirestore(firebaseUser?.uid, name, email, age, job)
                                     } else {
                                         _registerResult.value = Result.Error("Failed to update profile")
                                     }
@@ -39,9 +42,31 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             _registerResult.value = Result.Error(task.exception?.message ?: "Registration failed")
                         }
                     }
+                    .addOnFailureListener { exception ->
+                        _registerResult.value = Result.Error(exception.message ?: "An error occurred during registration")
+                    }
             } catch (e: Exception) {
                 _registerResult.value = Result.Error(e.message ?: "An error occurred")
             }
+        }
+    }
+
+    private fun saveUserToFirestore(userId: String?, name: String, email: String, age: String, job: String) {
+        val user = hashMapOf(
+            "name" to name,
+            "email" to email,
+            "age" to age,
+            "job" to job
+        )
+
+        userId?.let {
+            firestore.collection("users").document(it).set(user)
+                .addOnSuccessListener {
+                    _registerResult.value = Result.Success("Registration successful")
+                }
+                .addOnFailureListener { e ->
+                    _registerResult.value = Result.Error("Failed to save user data: ${e.message}")
+                }
         }
     }
 }

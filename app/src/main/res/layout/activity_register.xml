@@ -17,7 +17,7 @@
         android:text="@string/register"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/ijo_tua"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp">
 
-        <!-- Name Icon -->
         <ImageView
             android:id="@+id/etNameIcon"
             android:layout_width="24dp"
@@ -47,7 +46,6 @@
             android:layout_marginStart="16dp"
             app:tint="@android:color/darker_gray" />
 
-        <!-- Name EditText -->
         <EditText
             android:id="@+id/etName"
             android:layout_width="0dp"
@@ -73,7 +71,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp">
 
-        <!-- Email Icon -->
         <ImageView
             android:id="@+id/etEmailIcon"
             android:layout_width="24dp"
@@ -85,7 +82,6 @@
             android:layout_marginStart="16dp"
             app:tint="@android:color/darker_gray" />
 
-        <!-- Email EditText -->
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="0dp"
@@ -112,7 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp">
 
-        <!-- Password Icon -->
         <ImageView
             android:id="@+id/etPasswordIcon"
             android:layout_width="24dp"
@@ -124,7 +119,6 @@
             android:layout_marginStart="16dp"
             app:tint="@android:color/darker_gray" />
 
-        <!-- Password EditText -->
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="0dp"
@@ -139,7 +133,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Show Password Button -->
         <ImageView
             android:id="@+id/showPasswordButton"
             android:layout_width="24dp"
@@ -152,33 +145,93 @@
             app:tint="@android:color/darker_gray" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Signup Button -->
+    <!-- Age Input -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ageContainer"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/passwordContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/etAgeIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_calendar_today_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"
+            app:tint="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:hint="Age"
+            android:inputType="number"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/etAgeIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Job Input -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/jobContainer"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/ageContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <ImageView
+            android:id="@+id/etJobIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/baseline_work_outline_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"
+            app:tint="@android:color/darker_gray" />
+
+        <EditText
+            android:id="@+id/etJob"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:hint="Job"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/etJobIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
         android:backgroundTint="@color/ijo_tua"
         android:text="@string/register"
+        android:textAllCaps="false"
+        app:cornerRadius="5dp"
         android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordContainer" />
-
-    <TextView
-        android:id="@+id/btnGoToLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_to_register"
-        android:textColor="@color/blue"
-        android:textSize="14sp"
-        android:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@id/btnRegister"
+        app:layout_constraintTop_toBottomOf="@id/jobContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="32dp" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loadingAnimation"
@@ -192,5 +245,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/btnGoToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_register"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/btnRegister"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

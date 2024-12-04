@@ -97,7 +97,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tea Leaves"
+                android:text="Tea"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:gravity="center" />
@@ -122,7 +122,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coffee Leaves"
+                android:text="Coffee"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:gravity="center" />

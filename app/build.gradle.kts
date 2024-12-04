@@ -54,11 +54,12 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    val camerax_version = "1.5.0-alpha03"
+    val camerax_version = "1.4.0"
 
     implementation("androidx.camera:camera-core:${camerax_version}")
     implementation("androidx.camera:camera-camera2:${camerax_version}")
@@ -81,5 +82,7 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("com.airbnb.android:lottie:5.0.3")
+
+    implementation ("com.google.guava:guava:33.0.0-android")
 
 }

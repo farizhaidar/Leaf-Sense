@@ -5,33 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.profil.ProfilFragment">
 
-
     <!-- Name Input Container -->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="128dp"
-        android:src="@drawable/saybook"
-        app:civ_border_color="@android:color/white"
-        app:civ_border_width="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nameContainer"
         android:layout_width="350dp"
         android:layout_height="70dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="128dp"
         android:background="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_image">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/nameIcon"
@@ -78,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/ijo_tua"/>
+            app:tint="@color/ijo_tua" />
 
         <TextView
             android:id="@+id/emailDisplay"
@@ -87,13 +72,84 @@
             android:background="@android:color/transparent"
             android:text="Email"
             android:textSize="20sp"
-           android:padding="16dp"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/emailIcon"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Age Input Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fullNameContainer"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailContainer">
+
+        <ImageView
+            android:id="@+id/fullNameIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/baseline_calendar_today_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/ijo_tua" />
+
+        <TextView
+            android:id="@+id/AgeDisplay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="Age"
+            android:textSize="20sp"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fullNameIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Job Input Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/phoneContainer"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameContainer">
+
+        <ImageView
+            android:id="@+id/phoneIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/baseline_work_outline_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/ijo_tua" />
+
+        <TextView
+            android:id="@+id/JobDisplay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="Job"
+            android:textSize="20sp"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/phoneIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Logout Button -->
     <Button
@@ -104,6 +160,6 @@
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailContainer" />
+        app:layout_constraintTop_toBottomOf="@id/phoneContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

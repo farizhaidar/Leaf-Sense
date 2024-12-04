@@ -1,5 +1,6 @@
 package com.bangkit.leafsense.ui.register
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,11 +13,12 @@ import com.bangkit.leafsense.Result
 import com.bangkit.leafsense.ui.register.RegisterViewModel
 import com.bangkit.leafsense.ui.register.RegisterViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
-import androidx.lifecycle.Observer
-import android.widget.ImageView
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.lifecycle.Observer
 import com.bangkit.leafsense.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -55,9 +57,15 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.etName.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
+            val age = binding.etAge.text.toString().trim()  // Age will now be automatically filled
+            val job = binding.etJob.text.toString().trim()
 
-            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                registerUser(name, email, password)
+            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && age.isNotEmpty() && job.isNotEmpty()) {
+                if (isValidEmail(email)) {
+                    registerUser(name, email, password, age, job)
+                } else {
+                    Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
@@ -75,10 +83,14 @@ class RegisterActivity : AppCompatActivity() {
             isPasswordVisible = !isPasswordVisible
             togglePasswordVisibility(isPasswordVisible, passwordEditText, eyeIcon)
         }
+
+        binding.etAge.setOnClickListener {
+            showDatePickerDialog()
+        }
     }
 
-    private fun registerUser(name: String, email: String, password: String) {
-        registerViewModel.register(name, email, password)
+    private fun registerUser(name: String, email: String, password: String, age: String, job: String) {
+        registerViewModel.register(name, email, password, age, job)
     }
 
     private fun navigateToLoginActivity() {
@@ -97,5 +109,35 @@ class RegisterActivity : AppCompatActivity() {
             showPasswordButton.setImageResource(R.drawable.eye) // Use the 'eye' drawable for hidden state
         }
         passwordInput.setSelection(passwordInput.text.length)
+    }
+
+    // Email validation method
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(selectedYear, selectedMonth, selectedDayOfMonth)
+
+                val dateFormat = SimpleDateFormat("d MMMM yyyy", Locale("id", "ID"))
+                val formattedDate = dateFormat.format(selectedDate.time)
+
+                binding.etAge.setText(formattedDate)
+            },
+            year,
+            month,
+            day
+        )
+
+        datePickerDialog.show()
     }
 }
