@@ -70,9 +70,9 @@ class StrawberryActivity : AppCompatActivity() {
                     response.body()?.data?.filterNotNull()?.let { articles ->
                         val filteredArticles = articles.filter { it.plantType == "Stroberi" }
                         articlesAdapter.updateData(filteredArticles)
-                    } ?: showToast("No articles found")
+                    } ?: showToast("Tidak ada artikel yang ditemukan")
                 } else {
-                    showToast("Failed to load articles")
+                    showToast("Gagal memuat artikel")
                 }
             }
 
@@ -100,7 +100,7 @@ class StrawberryActivity : AppCompatActivity() {
                         articlesAdapter.updateData(filteredByQuery)
                     }
                 } else {
-                    showToast("Failed to load articles")
+                    showToast("Gagal memuat artikel")
                 }
             }
 

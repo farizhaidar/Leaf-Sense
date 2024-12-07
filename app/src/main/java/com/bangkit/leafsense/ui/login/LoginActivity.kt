@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
-                    // The Lottie animation is already shown in btnLogin click
+                    binding.loadingAnimation.visibility = View.VISIBLE
                 }
                 is Result.Success -> {
                     binding.loadingAnimation.visibility = View.GONE

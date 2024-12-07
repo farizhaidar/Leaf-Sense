@@ -72,9 +72,9 @@ class CoffeActivity : AppCompatActivity() {
                     response.body()?.data?.filterNotNull()?.let { articles ->
                         val filteredArticles = articles.filter { it.plantType == "Kopi" }
                         articlesAdapter.updateData(filteredArticles)
-                    } ?: showToast("No articles found")
+                    } ?: showToast("Tidak ada artikel yang ditemukan")
                 } else {
-                    showToast("Failed to load articles")
+                    showToast("Gagal memuat artikel")
                 }
             }
 
@@ -102,7 +102,7 @@ class CoffeActivity : AppCompatActivity() {
                         articlesAdapter.updateData(filteredByQuery)
                     }
                 } else {
-                    showToast("Failed to load articles")
+                    showToast("Gagal memuat artikel")
                 }
             }
 

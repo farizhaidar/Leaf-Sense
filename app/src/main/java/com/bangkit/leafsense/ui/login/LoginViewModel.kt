@@ -23,12 +23,17 @@ class LoginViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                         if (task.isSuccessful) {
                             val user = firebaseAuth.currentUser
                             if (user != null) {
-                                _loginResult.value = Result.Success("Login successful")
+                                if (user.isEmailVerified) {
+                                    _loginResult.value = Result.Success("Berhasil Masuk")
+                                } else {
+                                    _loginResult.value = Result.Error("Email tidak terverifikasi. Silakan periksa kotak masuk email Anda")
+                                    firebaseAuth.signOut()
+                                }
                             } else {
-                                _loginResult.value = Result.Error("User not found")
+                                _loginResult.value = Result.Error("Pengguna tidak ditemukan")
                             }
                         } else {
-                            _loginResult.value = Result.Error(task.exception?.message ?: "Login failed")
+                            _loginResult.value = Result.Error(task.exception?.message ?: "Gagal Masuk")
                         }
                     }
             } catch (e: Exception) {
@@ -36,4 +41,5 @@ class LoginViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
             }
         }
     }
+
 }

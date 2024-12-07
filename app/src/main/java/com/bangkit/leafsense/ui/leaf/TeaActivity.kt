@@ -56,7 +56,7 @@ class TeaActivity : AppCompatActivity() {
                         fetchArticles()
                     }
                 }
-                handler.postDelayed(searchRunnable!!, 300) // Delay 300ms
+                handler.postDelayed(searchRunnable!!, 300)
             }
 
             override fun afterTextChanged(s: android.text.Editable?) {}
@@ -72,9 +72,9 @@ class TeaActivity : AppCompatActivity() {
                     response.body()?.data?.filterNotNull()?.let { articles ->
                         val filteredArticles = articles.filter { it.plantType == "Teh" }
                         articlesAdapter.updateData(filteredArticles)
-                    } ?: showToast("No articles found")
+                    } ?: showToast("Tidak ada artikel yang ditemukan")
                 } else {
-                    showToast("Failed to load articles")
+                    showToast("Gagal memuat artikel")
                 }
             }
 
@@ -102,7 +102,7 @@ class TeaActivity : AppCompatActivity() {
                         articlesAdapter.updateData(filteredByQuery)
                     }
                 } else {
-                    showToast("Failed to load articles")
+                    showToast("Gagal memuat artikel")
                 }
             }
 

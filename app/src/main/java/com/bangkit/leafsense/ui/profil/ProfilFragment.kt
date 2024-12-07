@@ -34,8 +34,8 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         getUserProfileData()
 
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val userName = currentUser?.displayName ?: "Unknown"
-        val userEmail = currentUser?.email ?: "Unknown Email"
+        val userName = currentUser?.displayName ?: "Tidak dikenal"
+        val userEmail = currentUser?.email ?: "UEmail Tidak Dikenal"
 
         binding.nameDisplay.text = userName
         binding.emailDisplay.text = userEmail
@@ -66,12 +66,12 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
                             binding.AgeDisplay.text = userAge
                             binding.JobDisplay.text = userJob
                         } else {
-                            Toast.makeText(requireContext(), "User data not found", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Data pengguna tidak ditemukan", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show()
                 }
         }
     }

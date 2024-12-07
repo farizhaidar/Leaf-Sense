@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Leaf Sense</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Sign In</string>
-    <string name="register">Sign Up</string>
+    <string name="password">Kata Sandi</string>
+    <string name="login">Masuk</string>
+    <string name="register">Mendaftar</string>
     <string name="nama">Nama</string>
     <string name="empty_image_warning">empty image!!</string>
-    <string name="go_to_register">Already have an account?</string>
-    <string name="go_to_login">Dont have account yet?</string>
-    <string name="search">Search</string>
+    <string name="go_to_register">Sudah punya akun?</string>
+    <string name="go_to_login">Belum punya akun?</string>
+    <string name="search">Mencari</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_home">Home</string>

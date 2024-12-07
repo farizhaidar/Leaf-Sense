@@ -30,15 +30,14 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="35dp"
         android:text="LEAFSENSE"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="38sp"
         android:textStyle="bold"
-        android:layout_marginTop="60dp"
-        app:layout_constraintTop_toTopOf="@id/top_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/user_icon"
-        app:layout_constraintHorizontal_bias="0.2" />
+        app:layout_constraintTop_toTopOf="@id/top_view" />
 
 
     <TextView
@@ -54,16 +53,6 @@
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_text" />
-
-    <ImageView
-        android:id="@+id/user_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:contentDescription="User Icon"
-        android:src="@drawable/account_circle"
-        app:layout_constraintTop_toTopOf="@id/title_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="20dp" />
 
     <!-- Menu Section -->
     <LinearLayout
@@ -98,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tea"
+                android:text="Teh"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:gravity="center" />
@@ -123,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coffee"
+                android:text="Kopi"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:gravity="center" />
@@ -171,7 +160,7 @@
         app:layout_constraintTop_toBottomOf="@id/menu_view" />
     <!-- RecyclerView Section -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vertical_recycler_view"
+        android:id="@+id/horizontal_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:layout_constraintTop_toBottomOf="@id/leaftext"
@@ -180,7 +169,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:orientation="vertical" />
+        android:orientation="horizontal" />
 
 
     <com.airbnb.lottie.LottieAnimationView

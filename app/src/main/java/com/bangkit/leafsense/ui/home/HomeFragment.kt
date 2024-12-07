@@ -36,28 +36,25 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.userText.text = "Halo $userName!"
 
-        binding.verticalRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.horizontalRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         setupMenuNavigation()
         fetchArticles()
     }
 
     private fun setupMenuNavigation() {
-        // Navigasi ke TeaActivity
         binding.teaLeavesImage.apply {
             setOnClickListener {
                 animateClick { startActivity(Intent(requireContext(), TeaActivity::class.java)) }
             }
         }
 
-        // Navigasi ke CoffeeActivity
         binding.coffeeLeavesImage.apply {
             setOnClickListener {
                 animateClick { startActivity(Intent(requireContext(), CoffeActivity::class.java)) }
             }
         }
 
-        // Navigasi ke StrawberryActivity
         binding.strawberryLeavesImage.apply {
             setOnClickListener {
                 animateClick { startActivity(Intent(requireContext(), StrawberryActivity::class.java)) }
@@ -70,14 +67,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
-                        val filteredArticles = articles.filterNotNull()
-                        articlesAdapter = ArticlesAdapter(filteredArticles, requireContext())
-                        binding.verticalRecyclerView.adapter = articlesAdapter
+                        val limitedArticles = articles.filterNotNull().take(5) // Ambil hanya 5 artikel
+                        articlesAdapter = ArticlesAdapter(limitedArticles, requireContext())
+                        binding.horizontalRecyclerView.adapter = articlesAdapter
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Failed to load articles", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Gagal memuat artikel", Toast.LENGTH_SHORT).show()
                 }
             }
+
+
 
             override fun onFailure(call: Call<ArticlesResponse>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()

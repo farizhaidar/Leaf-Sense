@@ -43,15 +43,16 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
                     binding.loadingAnimation.visibility = View.GONE
-                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Pendaftaran berhasil. Silakan periksa email Anda untuk memverifikasi akun Anda.", Toast.LENGTH_LONG).show()
                     navigateToLoginActivity()
                 }
                 is Result.Error -> {
                     binding.loadingAnimation.visibility = View.GONE
-                    Toast.makeText(this, "Registration failed: ${result.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Pendaftaran gagal: ${result.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         })
+
 
         binding.btnRegister.setOnClickListener {
             val name = binding.etName.text.toString().trim()
@@ -64,10 +65,10 @@ class RegisterActivity : AppCompatActivity() {
                 if (isValidEmail(email)) {
                     registerUser(name, email, password, age, job)
                 } else {
-                    Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Format email tidak valid", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Semua wajib diisi", Toast.LENGTH_SHORT).show()
             }
         }
 

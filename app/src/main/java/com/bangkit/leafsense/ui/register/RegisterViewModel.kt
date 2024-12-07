@@ -33,7 +33,14 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
                             firebaseUser?.updateProfile(profileUpdates)
                                 ?.addOnCompleteListener { updateTask ->
                                     if (updateTask.isSuccessful) {
-                                        saveUserToFirestore(firebaseUser?.uid, name, email, age, job)
+                                        firebaseUser.sendEmailVerification()
+                                            .addOnCompleteListener { emailTask ->
+                                                if (emailTask.isSuccessful) {
+                                                    saveUserToFirestore(firebaseUser.uid, name, email, age, job)
+                                                } else {
+                                                    _registerResult.value = Result.Error("Failed to send verification email")
+                                                }
+                                            }
                                     } else {
                                         _registerResult.value = Result.Error("Failed to update profile")
                                     }
@@ -50,6 +57,7 @@ class RegisterViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
             }
         }
     }
+
 
     private fun saveUserToFirestore(userId: String?, name: String, email: String, age: String, job: String) {
         val user = hashMapOf(

@@ -4,260 +4,274 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/register"
     android:background="@drawable/bg_color"
-    tools:context=".ui.register.RegisterActivity"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".ui.register.RegisterActivity">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/tvRegisterTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/ijo_tua"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="170dp" />
-
-    <!-- Name Input -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/nameContainer"
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/tvRegisterTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
-
-        <ImageView
-            android:id="@+id/etNameIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_baseline_person_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            app:tint="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Name"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintStart_toEndOf="@id/etNameIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Email Input -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emailContainer"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/nameContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
-
-        <ImageView
-            android:id="@+id/etEmailIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_baseline_email_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            app:tint="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintStart_toEndOf="@id/etEmailIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Password Input -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/passwordContainer"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/emailContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
-
-        <ImageView
-            android:id="@+id/etPasswordIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_baseline_lock_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            app:tint="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintStart_toEndOf="@id/etPasswordIcon"
-            app:layout_constraintEnd_toStartOf="@id/showPasswordButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <ImageView
-            android:id="@+id/showPasswordButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/eye"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="16dp"
-            app:tint="@android:color/darker_gray" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Age Input -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ageContainer"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/passwordContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
-
-        <ImageView
-            android:id="@+id/etAgeIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/baseline_calendar_today_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            app:tint="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/etAge"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Age"
-            android:inputType="number"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintStart_toEndOf="@id/etAgeIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Job Input -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/jobContainer"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/ageContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
-
-        <ImageView
-            android:id="@+id/etJobIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/baseline_work_outline_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            app:tint="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/etJob"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Job"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintStart_toEndOf="@id/etJobIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/ijo_tua"
-        android:text="@string/register"
-        android:textAllCaps="false"
-        app:cornerRadius="5dp"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/jobContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loadingAnimation"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading_animation"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/btnGoToLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_to_register"
-        android:textColor="@color/blue"
-        android:textSize="14sp"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/btnRegister"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="24dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Title -->
+            <TextView
+                android:id="@+id/tvRegisterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="170dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/register"
+                android:textColor="@color/ijo_tua"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Name Input -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nameContainer"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRegisterTitle">
+
+                <ImageView
+                    android:id="@+id/etNameIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_person_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@android:color/darker_gray" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Nama"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/etNameIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Email Input -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/emailContainer"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameContainer">
+
+                <ImageView
+                    android:id="@+id/etEmailIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_email_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@android:color/darker_gray" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/etEmailIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Password Input -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/passwordContainer"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailContainer">
+
+                <ImageView
+                    android:id="@+id/etPasswordIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_baseline_lock_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@android:color/darker_gray" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Kata Sandi"
+                    android:inputType="textPassword"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/showPasswordButton"
+                    app:layout_constraintStart_toEndOf="@id/etPasswordIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/showPasswordButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/eye"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@android:color/darker_gray" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Age Input -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ageContainer"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordContainer">
+
+                <ImageView
+                    android:id="@+id/etAgeIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/baseline_calendar_today_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@android:color/darker_gray" />
+
+                <EditText
+                    android:id="@+id/etAge"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Tanggal Lahir"
+                    android:inputType="number"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/etAgeIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Job Input -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/jobContainer"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ageContainer">
+
+                <ImageView
+                    android:id="@+id/etJobIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/baseline_work_outline_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@android:color/darker_gray" />
+
+                <EditText
+                    android:id="@+id/etJob"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Pekerjaan"
+                    android:inputType="text"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/etJobIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/ijo_tua"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                app:cornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/jobContainer" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loadingAnimation"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading_animation" />
+
+            <TextView
+                android:id="@+id/btnGoToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/go_to_register"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnRegister" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
