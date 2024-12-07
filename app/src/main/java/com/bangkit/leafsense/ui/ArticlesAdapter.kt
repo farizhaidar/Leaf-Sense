@@ -1,5 +1,6 @@
 package com.bangkit.leafsense.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,7 +12,7 @@ import com.bangkit.leafsense.data.response.DataItem
 import com.bangkit.leafsense.ui.detail.DetailActivity
 
 class ArticlesAdapter(
-    private val articles: List<DataItem>,
+    private var articles: List<DataItem>,
     private val context: Context
 ) : RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
@@ -45,4 +46,11 @@ class ArticlesAdapter(
     }
 
     override fun getItemCount(): Int = articles.size
+
+    // Fungsi untuk memperbarui data artikel
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newArticles: List<DataItem>) {
+        articles = newArticles
+        notifyDataSetChanged()
+    }
 }

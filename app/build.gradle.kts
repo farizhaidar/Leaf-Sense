@@ -84,5 +84,6 @@ dependencies {
     implementation("com.airbnb.android:lottie:5.0.3")
 
     implementation ("com.google.guava:guava:33.0.0-android")
+    implementation ("androidx.appcompat:appcompat:1.7.0")
 
 }
