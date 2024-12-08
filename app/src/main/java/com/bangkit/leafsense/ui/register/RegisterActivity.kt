@@ -43,8 +43,12 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
                     binding.loadingAnimation.visibility = View.GONE
-                    Toast.makeText(this, "Pendaftaran berhasil. Silakan periksa email Anda untuk memverifikasi akun Anda.", Toast.LENGTH_LONG).show()
-                    navigateToLoginActivity()
+                    Toast.makeText(
+                        this,
+                        "Pendaftaran berhasil. Silakan periksa email Anda untuk memverifikasi akun Anda.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    navigateToVerifyEmailActivity()
                 }
                 is Result.Error -> {
                     binding.loadingAnimation.visibility = View.GONE
@@ -96,6 +100,12 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun navigateToLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun navigateToVerifyEmailActivity() {
+        val intent = Intent(this, VerifyEmailActivity::class.java)
         startActivity(intent)
         finish()
     }
