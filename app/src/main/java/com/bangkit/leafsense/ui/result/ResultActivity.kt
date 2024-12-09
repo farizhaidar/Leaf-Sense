@@ -95,7 +95,7 @@ class ResultActivity : AppCompatActivity() {
                         Toast.makeText(this@ResultActivity, "Failed to get prediction", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(this@ResultActivity, "Failed: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ResultActivity, "Prediksi gagal, silakan coba lagi: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 

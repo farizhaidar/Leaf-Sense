@@ -3,7 +3,7 @@
     <string name="email">Email</string>
     <string name="password">Kata Sandi</string>
     <string name="login">Masuk</string>
-    <string name="register">Mendaftar</string>
+    <string name="register">Daftar</string>
     <string name="nama">Nama</string>
     <string name="empty_image_warning">empty image!!</string>
     <string name="go_to_register">Sudah punya akun?</string>
