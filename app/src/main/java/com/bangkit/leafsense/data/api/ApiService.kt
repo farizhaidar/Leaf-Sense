@@ -2,10 +2,14 @@ package com.bangkit.leafsense.data.api
 
 import com.bangkit.leafsense.data.response.ArticlesResponse
 import com.bangkit.leafsense.data.response.DetailResponse
+import com.bangkit.leafsense.data.response.PredictResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService {
 
@@ -15,10 +19,10 @@ interface ApiService {
     @GET("articles/{id}")
     suspend fun getArticleDetail(@Path("id") articleId: String): DetailResponse
 
-    @GET("articles")
-    fun searchArticles(
-        @Query("q") query: String
-    ): Call<ArticlesResponse>
-
+    @Multipart
+    @POST("predict")
+    fun predictLeafDisease(
+        @Part image: MultipartBody.Part
+    ): Call<PredictResponse>
 
 }

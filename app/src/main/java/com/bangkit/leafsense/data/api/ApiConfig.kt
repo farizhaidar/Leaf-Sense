@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object {
-        fun getApiService(): ApiService {
+        private fun createRetrofit(baseUrl: String): Retrofit {
             val loggingInterceptor =
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -15,11 +15,20 @@ class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build()
 
-            val retrofit = Retrofit.Builder().baseUrl("https://leaf-sense-api-7l3mig7ida-et.a.run.app/")
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
+        }
 
+        fun getApiService(): ApiService {
+            val retrofit = createRetrofit("https://leaf-sense-api-7l3mig7ida-et.a.run.app/")
+            return retrofit.create(ApiService::class.java)
+        }
+
+        fun getClassificationApiService(): ApiService {
+            val retrofit = createRetrofit("https://leaf-sense-ml-api-716993595320.asia-southeast2.run.app/")
             return retrofit.create(ApiService::class.java)
         }
     }
