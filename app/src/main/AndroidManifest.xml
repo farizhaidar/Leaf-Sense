@@ -37,7 +37,7 @@
             android:name=".ui.leaf.TeaActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ResultActivity"
+            android:name=".ui.result.ResultActivity"
             android:exported="false" /> <!-- FileProvider configuration -->
         <provider
             android:name="androidx.core.content.FileProvider"

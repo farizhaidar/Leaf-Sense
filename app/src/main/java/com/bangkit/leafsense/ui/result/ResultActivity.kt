@@ -1,6 +1,5 @@
-package com.bangkit.leafsense.ui
+package com.bangkit.leafsense.ui.result
 
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -40,7 +39,7 @@ class ResultActivity : AppCompatActivity() {
                 .into(binding.imageView)
 
             val file = uriToFile(imageUri, this)
-            setupAnalyzeButton(file)
+            predictDisease(file) // Langsung panggil prediksi
         }
 
         hidePredictionViews()
@@ -60,20 +59,13 @@ class ResultActivity : AppCompatActivity() {
         binding.preventionTextView.visibility = View.VISIBLE
     }
 
-    private fun setupAnalyzeButton(file: File) {
-        binding.analyzeButton.setOnClickListener {
-            binding.analyzeButton.visibility = View.GONE
-            predictDisease(file)
-        }
-    }
-
     private fun predictDisease(file: File) {
         // Periksa apakah file berformat JPEG
         if (!file.name.lowercase().endsWith(".jpg") && !file.name.lowercase().endsWith(".jpeg")) {
             Toast.makeText(this, "File harus dalam format JPEG", Toast.LENGTH_SHORT).show()
-            binding.analyzeButton.visibility = View.VISIBLE
             return
         }
+
         // Kompres file jika ukurannya terlalu besar
         val reducedFile = file.reduceFileImage()
 
@@ -89,7 +81,8 @@ class ResultActivity : AppCompatActivity() {
                     val data = response.body()?.data
                     if (data != null) {
                         binding.predictionResult.text = if (data.probability != null) {
-                            val probabilityPercentage = (data.probability as? Double ?: data.probability.toString().toDouble()) * 100
+                            val probabilityPercentage = (data.probability as? Double
+                                ?: data.probability.toString().toDouble()) * 100
                             "Result: ${data.result} (${String.format("%.2f", probabilityPercentage)}%)"
                         } else {
                             "Result: ${data.result} (Probability not available)"
@@ -100,17 +93,14 @@ class ResultActivity : AppCompatActivity() {
                         showPredictionViews()
                     } else {
                         Toast.makeText(this@ResultActivity, "Failed to get prediction", Toast.LENGTH_SHORT).show()
-                        binding.analyzeButton.visibility = View.VISIBLE
                     }
                 } else {
                     Toast.makeText(this@ResultActivity, "Failed: ${response.message()}", Toast.LENGTH_SHORT).show()
-                    binding.analyzeButton.visibility = View.VISIBLE
                 }
             }
 
             override fun onFailure(call: Call<PredictResponse>, t: Throwable) {
                 Toast.makeText(this@ResultActivity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                binding.analyzeButton.visibility = View.VISIBLE
             }
         })
     }

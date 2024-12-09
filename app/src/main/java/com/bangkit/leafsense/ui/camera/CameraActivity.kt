@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat
 import com.bangkit.leafsense.R
 import com.bangkit.leafsense.createCustomTempFile
 import com.bangkit.leafsense.databinding.ActivityCameraBinding
-import com.bangkit.leafsense.ui.ResultActivity
+import com.bangkit.leafsense.ui.result.ResultActivity
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
@@ -168,7 +168,7 @@ class CameraActivity : AppCompatActivity() {
         binding.imageActionButtons.visibility = View.GONE
 
         imageUri?.let {
-            Toast.makeText(this, "Gambar disimpan!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Gambar sedang di deteksi!", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, ResultActivity::class.java).apply {
                 putExtra(ResultActivity.EXTRA_IMAGE_URI, it.toString())
