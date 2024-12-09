@@ -13,7 +13,6 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@color/white</item>
 
-        <item name="colorSecondaryContainer">@color/ijo1</item>
     </style>
 
     <style name="Theme.LeafSense" parent="Base.Theme.LeafSense" />
