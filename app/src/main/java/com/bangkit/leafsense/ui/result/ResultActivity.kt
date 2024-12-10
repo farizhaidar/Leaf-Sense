@@ -22,6 +22,8 @@ import java.io.File
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
+    private var retryCount = 0
+    private val maxRetry = 3 // Batas maksimal percobaan ulang
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,6 @@ class ResultActivity : AppCompatActivity() {
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Mendapatkan URI gambar dari Intent
         val imageUriString = intent.getStringExtra(EXTRA_IMAGE_URI)
         if (imageUriString != null) {
             val imageUri = Uri.parse(imageUriString)
@@ -39,7 +40,7 @@ class ResultActivity : AppCompatActivity() {
                 .into(binding.imageView)
 
             val file = uriToFile(imageUri, this)
-            predictDisease(file) // Langsung panggil prediksi
+            predictDisease(file)
         }
 
         hidePredictionViews()
@@ -47,26 +48,19 @@ class ResultActivity : AppCompatActivity() {
 
     private fun hidePredictionViews() {
         binding.predictionResult.visibility = View.GONE
-        binding.predictionDetails.visibility = View.GONE
-        binding.cureTextView.visibility = View.GONE
-        binding.preventionTextView.visibility = View.GONE
+        binding.cardPredictionDetails.visibility = View.GONE
+        binding.cardCure.visibility = View.GONE
+        binding.cardPrevention.visibility = View.GONE
     }
 
-//    private fun showPredictionViews() {
-//        binding.predictionResult.visibility = View.VISIBLE
-//        binding.predictionDetails.visibility = View.VISIBLE
-//        binding.cureTextView.visibility = View.VISIBLE
-//        binding.preventionTextView.visibility = View.VISIBLE
-//    }
-
     private fun predictDisease(file: File) {
-        // Periksa apakah file berformat JPEG
         if (!file.name.lowercase().endsWith(".jpg") && !file.name.lowercase().endsWith(".jpeg")) {
             Toast.makeText(this, "File harus dalam format JPEG", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Kompres file jika ukurannya terlalu besar
+        showLoading()
+
         val reducedFile = file.reduceFileImage()
 
         val fileBody = reducedFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
@@ -77,40 +71,55 @@ class ResultActivity : AppCompatActivity() {
 
         call.enqueue(object : Callback<PredictResponse> {
             override fun onResponse(call: Call<PredictResponse>, response: Response<PredictResponse>) {
+                hideLoading()
+
                 if (response.isSuccessful) {
                     val data = response.body()?.data
                     if (data != null) {
                         binding.predictionResult.text = if (data.probability != null) {
                             val probabilityPercentage = (data.probability as? Double
                                 ?: data.probability.toString().toDouble()) * 100
-                            "Result: ${data.result} (${String.format("%.2f", probabilityPercentage)}%)"
+                            "Hasil: ${data.result} (${String.format("%.2f", probabilityPercentage)}%)"
                         } else {
                             "Result: ${data.result} (Probability not available)"
                         }
-                        binding.predictionDetails.text = "Description: ${data.description}"
-                        binding.cureTextView.text = "Cure: ${data.cure}"
-                        binding.preventionTextView.text = "Prevention: ${data.prevention}"
+                        binding.predictionDetails.text = "${data.description}"
+                        binding.cureTextView.text = "${data.cure}"
+                        binding.preventionTextView.text = "${data.prevention}"
                         showPredictionViews()
+                        retryCount = 0 // Reset retry count on success
                     } else {
-                        Toast.makeText(this@ResultActivity, "Failed to get prediction", Toast.LENGTH_SHORT).show()
+                        handleRetry(file, "Failed to get prediction.")
                     }
                 } else {
-                    Toast.makeText(this@ResultActivity, "Prediksi gagal, silakan coba lagi: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    handleRetry(file, "Prediksi gagal, silakan coba lagi: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<PredictResponse>, t: Throwable) {
-                Toast.makeText(this@ResultActivity, "Network Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                handleRetry(file, "Network Error: ${t.message}")
+                hideLoading()
+
             }
         })
+    }
+
+    private fun handleRetry(file: File, errorMessage: String) {
+        if (retryCount < maxRetry) {
+            retryCount++
+            Toast.makeText(this, "$errorMessage. Mengulang (${retryCount}/${maxRetry})", Toast.LENGTH_SHORT).show()
+            predictDisease(file) // Coba lagi
+        } else {
+            Toast.makeText(this, "Gagal setelah $maxRetry percobaan. Harap coba lagi nanti.", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showPredictionViews() {
         val viewsToAnimate = listOf(
             binding.predictionResult,
-            binding.predictionDetails,
-            binding.cureTextView,
-            binding.preventionTextView
+            binding.cardPredictionDetails,
+            binding.cardCure,
+            binding.cardPrevention
         )
 
         for ((index, view) in viewsToAnimate.withIndex()) {
@@ -118,12 +127,19 @@ class ResultActivity : AppCompatActivity() {
             view.alpha = 0f
             view.animate()
                 .alpha(1f)
-                .setStartDelay((index * 200).toLong()) // Tambahkan jeda di antara elemen
+                .setStartDelay((index * 200).toLong())
                 .setDuration(500)
                 .start()
         }
     }
 
+    private fun showLoading() {
+        binding.loadingAnimation.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading() {
+        binding.loadingAnimation.visibility = View.GONE
+    }
 
     companion object {
         const val EXTRA_IMAGE_URI = "extra_image_uri"

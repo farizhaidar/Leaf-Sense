@@ -1,13 +1,15 @@
-<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Image View -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
@@ -16,64 +18,144 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="Captured Image"/>
+            android:contentDescription="Captured Image" />
 
-
+        <!-- Prediction Result -->
         <TextView
             android:id="@+id/predictionResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prediction Result"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
+            android:text="Prediction Result"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/imageView" />
 
-        <TextView
-            android:id="@+id/predictionDetails"
-            android:layout_width="wrap_content"
+        <!-- Card for Prediction Details -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardPredictionDetails"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Prediction Details"
-            app:layout_constraintTop_toBottomOf="@id/predictionResult"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/predictionResult">
 
-        <TextView
-            android:id="@+id/cureTextView"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/Details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tentang Penyakit"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/predictionDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prediction Details"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingBottom="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card for Cure -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardCure"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cure"
-            app:layout_constraintTop_toBottomOf="@id/predictionDetails"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/cardPredictionDetails">
 
-        <TextView
-            android:id="@+id/preventionTextView"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/Cure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Solusi"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/cureTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cure"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingBottom="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card for Prevention -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardPrevention"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Prevention"
-            app:layout_constraintTop_toBottomOf="@id/cureTextView"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/cardCure">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/Prevention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pencegahan"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/preventionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prevention"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:paddingBottom="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Loading Animation -->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loadingAnimation"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:visibility="gone"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading_animation"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </android.widget.ScrollView>
