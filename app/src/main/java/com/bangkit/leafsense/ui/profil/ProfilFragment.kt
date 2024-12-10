@@ -34,6 +34,8 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
 
         _binding = FragmentProfilBinding.bind(view)
 
+        startSequentialAnimation()
+
         getUserProfileData()
 
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -194,6 +196,26 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
             age--
         }
         return age
+    }
+
+    private fun startSequentialAnimation() {
+        val viewsToAnimate = listOf(
+            binding.profileImage,
+            binding.nameContainer,
+            binding.emailContainer,
+            binding.ageContainer,
+            binding.jobContainer
+        )
+
+        for ((index, view) in viewsToAnimate.withIndex()) {
+            view.alpha = 0f // Awalnya tidak terlihat
+            view.animate()
+                .alpha(1f) // Transparansi berubah menjadi terlihat
+                .translationYBy(50f) // Elemen muncul dari bawah
+                .setStartDelay((index * 200).toLong()) // Tambahkan delay untuk setiap elemen
+                .setDuration(300) // Durasi animasi
+                .start()
+        }
     }
 
     override fun onDestroyView() {

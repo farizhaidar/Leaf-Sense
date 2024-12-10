@@ -20,6 +20,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var articleId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.sharedElementEnterTransition = android.transition.TransitionInflater.from(this)
+            .inflateTransition(android.R.transition.move)
         super.onCreate(savedInstanceState)
 
         binding = ActivityDetailBinding.inflate(layoutInflater)

@@ -1,10 +1,12 @@
 package com.bangkit.leafsense.ui.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bangkit.leafsense.databinding.ItemArticleBinding
@@ -29,7 +31,13 @@ class ArticlesAdapter(
                 root.setOnClickListener {
                     val intent = Intent(context, DetailActivity::class.java)
                     intent.putExtra("ARTICLE_ID", article.id)
-                    context.startActivity(intent)
+
+                    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        context as Activity,
+                        imageView,
+                        "shared_photo"
+                    )
+                    context.startActivity(intent, options.toBundle())
                 }
             }
         }

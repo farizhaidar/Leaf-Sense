@@ -14,7 +14,7 @@
         android:contentDescription="Profile Image"
         android:elevation="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/saybook"
+        android:src="@drawable/profil_leaf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

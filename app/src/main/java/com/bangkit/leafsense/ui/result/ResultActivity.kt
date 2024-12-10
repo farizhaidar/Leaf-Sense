@@ -52,12 +52,12 @@ class ResultActivity : AppCompatActivity() {
         binding.preventionTextView.visibility = View.GONE
     }
 
-    private fun showPredictionViews() {
-        binding.predictionResult.visibility = View.VISIBLE
-        binding.predictionDetails.visibility = View.VISIBLE
-        binding.cureTextView.visibility = View.VISIBLE
-        binding.preventionTextView.visibility = View.VISIBLE
-    }
+//    private fun showPredictionViews() {
+//        binding.predictionResult.visibility = View.VISIBLE
+//        binding.predictionDetails.visibility = View.VISIBLE
+//        binding.cureTextView.visibility = View.VISIBLE
+//        binding.preventionTextView.visibility = View.VISIBLE
+//    }
 
     private fun predictDisease(file: File) {
         // Periksa apakah file berformat JPEG
@@ -104,6 +104,26 @@ class ResultActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun showPredictionViews() {
+        val viewsToAnimate = listOf(
+            binding.predictionResult,
+            binding.predictionDetails,
+            binding.cureTextView,
+            binding.preventionTextView
+        )
+
+        for ((index, view) in viewsToAnimate.withIndex()) {
+            view.visibility = View.VISIBLE
+            view.alpha = 0f
+            view.animate()
+                .alpha(1f)
+                .setStartDelay((index * 200).toLong()) // Tambahkan jeda di antara elemen
+                .setDuration(500)
+                .start()
+        }
+    }
+
 
     companion object {
         const val EXTRA_IMAGE_URI = "extra_image_uri"
