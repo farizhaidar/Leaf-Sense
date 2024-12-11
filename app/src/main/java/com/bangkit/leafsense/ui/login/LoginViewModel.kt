@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.bangkit.leafsense.Result
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class LoginViewModel(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 

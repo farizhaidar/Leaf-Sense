@@ -70,7 +70,7 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
 
             binding.nameEdit.setText(binding.nameDisplay.text.toString())
             binding.emailEdit.setText(binding.emailDisplay.text.toString())
-            binding.ageEdit.setText(binding.ageDisplay.text.toString()) // Pastikan tanggal tidak hilang
+            binding.ageEdit.setText(binding.ageDisplay.text.toString())
             binding.jobEdit.setText(binding.jobDisplay.text.toString())
 
             binding.nameEdit.visibility = View.VISIBLE
@@ -111,7 +111,6 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
                 .addOnSuccessListener {
                     Toast.makeText(requireContext(), "Profil berhasil diperbarui", Toast.LENGTH_SHORT).show()
 
-                    // Perbarui tampilan dengan data baru
                     binding.nameDisplay.text = binding.nameEdit.text.toString()
                     binding.emailDisplay.text = binding.emailEdit.text.toString()
                     binding.ageDisplay.text = binding.ageEdit.text.toString()
@@ -163,14 +162,12 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
 
-        // Jika EditText sudah memiliki data, gunakan sebagai tanggal awal
         val existingDate = binding.ageEdit.text.toString()
         if (existingDate.isNotEmpty()) {
             val dateFormat = SimpleDateFormat("d MMMM yyyy", Locale.getDefault())
             try {
                 calendar.time = dateFormat.parse(existingDate) ?: Calendar.getInstance().time
             } catch (e: Exception) {
-                // Jika parsing gagal, tetap gunakan tanggal sekarang
                 calendar.time = Calendar.getInstance().time
             }
         }
@@ -208,12 +205,12 @@ class ProfilFragment : Fragment(R.layout.fragment_profil) {
         )
 
         for ((index, view) in viewsToAnimate.withIndex()) {
-            view.alpha = 0f // Awalnya tidak terlihat
+            view.alpha = 0f
             view.animate()
-                .alpha(1f) // Transparansi berubah menjadi terlihat
-                .translationYBy(50f) // Elemen muncul dari bawah
-                .setStartDelay((index * 200).toLong()) // Tambahkan delay untuk setiap elemen
-                .setDuration(300) // Durasi animasi
+                .alpha(1f)
+                .translationYBy(50f)
+                .setStartDelay((index * 200).toLong())
+                .setDuration(300)
                 .start()
         }
     }

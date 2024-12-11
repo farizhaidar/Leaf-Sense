@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.leafsense.databinding.ActivityRegisterBinding
 import com.bangkit.leafsense.ui.login.LoginActivity
 import com.bangkit.leafsense.Result
-import com.bangkit.leafsense.ui.register.RegisterViewModel
-import com.bangkit.leafsense.ui.register.RegisterViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.EditText
 import android.widget.ImageView
@@ -26,7 +24,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val registerViewModel: RegisterViewModel by viewModels { RegisterViewModelFactory(FirebaseAuth.getInstance()) }
 
-    // Define the password visibility state
     private var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.etName.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
-            val age = binding.etAge.text.toString().trim()  // Age will now be automatically filled
+            val age = binding.etAge.text.toString().trim()
             val job = binding.etJob.text.toString().trim()
 
             if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && age.isNotEmpty() && job.isNotEmpty()) {
@@ -80,7 +77,6 @@ class RegisterActivity : AppCompatActivity() {
             navigateToLoginActivity()
         }
 
-        // Password visibility toggle logic
         val passwordEditText: EditText = binding.etPassword
         val eyeIcon: ImageView = binding.showPasswordButton
 
@@ -110,7 +106,7 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
 
-    // Toggle password visibility
+
     private fun togglePasswordVisibility(isPasswordVisible: Boolean, passwordInput: EditText, showPasswordButton: ImageView) {
         if (isPasswordVisible) {
             passwordInput.inputType = android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -122,7 +118,6 @@ class RegisterActivity : AppCompatActivity() {
         passwordInput.setSelection(passwordInput.text.length)
     }
 
-    // Email validation method
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }

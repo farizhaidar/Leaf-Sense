@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.leafsense.R
 import com.bangkit.leafsense.data.api.ApiConfig
 import com.bangkit.leafsense.data.response.ArticlesResponse
 import com.bangkit.leafsense.databinding.ActivityTeaBinding
@@ -54,7 +53,7 @@ class StrawberryActivity : AppCompatActivity() {
                         fetchArticles()
                     }
                 }
-                handler.postDelayed(searchRunnable!!, 300) // Delay 300ms
+                handler.postDelayed(searchRunnable!!, 300)
             }
 
             override fun afterTextChanged(s: android.text.Editable?) {}

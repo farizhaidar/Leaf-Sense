@@ -76,7 +76,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Email Input Container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/emailContainer"
         android:layout_width="350dp"
@@ -133,7 +132,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Age Input Container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/ageContainer"
         android:layout_width="350dp"
@@ -190,7 +188,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Job Input Container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/jobContainer"
         android:layout_width="350dp"

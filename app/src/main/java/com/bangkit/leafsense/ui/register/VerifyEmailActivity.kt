@@ -17,7 +17,7 @@ class VerifyEmailActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
     private val handler = Handler(Looper.getMainLooper())
-    private val checkInterval = 5000L // Interval untuk cek status verifikasi (5 detik)
+    private val checkInterval = 5000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +52,6 @@ class VerifyEmailActivity : AppCompatActivity() {
             }
         }
 
-        // Mulai pengecekan otomatis
         startCheckingEmailVerification()
     }
 
@@ -61,11 +60,9 @@ class VerifyEmailActivity : AppCompatActivity() {
             override fun run() {
                 user.reload().addOnCompleteListener { task ->
                     if (task.isSuccessful && user.isEmailVerified) {
-                        // Email berhasil diverifikasi
                         Toast.makeText(this@VerifyEmailActivity, "Email berhasil diverifikasi!", Toast.LENGTH_SHORT).show()
                         navigateToLoginActivity()
                     } else {
-                        // Jika belum diverifikasi, cek ulang setelah interval
                         handler.postDelayed(this, checkInterval)
                     }
                 }

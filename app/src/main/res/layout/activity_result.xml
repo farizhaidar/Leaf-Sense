@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Image View -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
@@ -20,7 +19,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="Captured Image" />
 
-        <!-- Prediction Result -->
         <TextView
             android:id="@+id/predictionResult"
             android:layout_width="wrap_content"
@@ -33,7 +31,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView" />
 
-        <!-- Card for Prediction Details -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPredictionDetails"
             android:layout_width="0dp"
@@ -74,7 +71,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Card for Cure -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardCure"
             android:layout_width="0dp"
@@ -115,7 +111,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Card for Prevention -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPrevention"
             android:layout_width="0dp"
@@ -156,7 +151,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Loading Animation -->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loadingAnimation"
             android:layout_width="150dp"

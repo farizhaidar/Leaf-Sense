@@ -55,7 +55,6 @@ class ArticlesAdapter(
 
     override fun getItemCount(): Int = articles.size
 
-    // Fungsi untuk memperbarui data artikel
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newArticles: List<DataItem>) {
         articles = newArticles

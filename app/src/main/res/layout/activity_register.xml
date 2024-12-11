@@ -20,7 +20,7 @@
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!-- Title -->
+
             <TextView
                 android:id="@+id/tvRegisterTitle"
                 android:layout_width="wrap_content"
@@ -35,7 +35,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Name Input -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/nameContainer"
                 android:layout_width="0dp"
@@ -71,7 +70,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Email Input -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/emailContainer"
                 android:layout_width="0dp"
@@ -108,7 +106,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Password Input -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/passwordContainer"
                 android:layout_width="0dp"
@@ -156,7 +153,6 @@
                     app:tint="@android:color/darker_gray" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Age Input -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ageContainer"
                 android:layout_width="0dp"
@@ -193,7 +189,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Job Input -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/jobContainer"
                 android:layout_width="0dp"

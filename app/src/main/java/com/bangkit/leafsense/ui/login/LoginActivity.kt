@@ -45,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Show Lottie animation while logging in
             binding.loadingAnimation.visibility = View.VISIBLE
 
             loginViewModel.login(email, password)
@@ -56,7 +55,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Password visibility toggle logic
         val passwordEditText = binding.etPassword
         val eyeIcon = binding.showPasswordButton
 
@@ -104,7 +102,6 @@ class LoginActivity : AppCompatActivity() {
         return sharedPreferences.getBoolean("isLoggedIn", false)
     }
 
-    // Toggle password visibility
     private fun togglePasswordVisibility(isPasswordVisible: Boolean, passwordInput: EditText, showPasswordButton: ImageView) {
         if (isPasswordVisible) {
             passwordInput.inputType = android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD

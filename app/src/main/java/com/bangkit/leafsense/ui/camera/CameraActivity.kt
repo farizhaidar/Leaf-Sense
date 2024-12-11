@@ -92,7 +92,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.black)) // Menetapkan warna hitam
+        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
 
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -146,11 +146,10 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun stopCamera() {
-        // Memastikan bahwa kamera dihentikan dengan membebaskan semua sumber daya kamera
         val cameraProvider = ProcessCameraProvider.getInstance(this).get()
         cameraProvider.unbindAll()
-        binding.viewFinder.visibility = View.GONE // Menyembunyikan preview kamera
-        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.black)) // Menetapkan warna hitam
+        binding.viewFinder.visibility = View.GONE
+        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.black))
 
     }
 

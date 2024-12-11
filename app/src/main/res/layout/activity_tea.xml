@@ -39,14 +39,14 @@
             <EditText
                 android:id="@+id/search_bar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="@string/search"
                 android:background="@android:color/transparent"
+                android:hint="@string/search"
                 android:inputType="text"
+                android:padding="0dp"
                 android:textColor="@android:color/black"
-                android:textCursorDrawable="@null"
-                android:padding="0dp"/>
+                android:textCursorDrawable="@null" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

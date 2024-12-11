@@ -23,7 +23,7 @@ class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResultBinding
     private var retryCount = 0
-    private val maxRetry = 3 // Batas maksimal percobaan ulang
+    private val maxRetry = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,9 +87,9 @@ class ResultActivity : AppCompatActivity() {
                         binding.cureTextView.text = "${data.cure}"
                         binding.preventionTextView.text = "${data.prevention}"
                         showPredictionViews()
-                        retryCount = 0 // Reset retry count on success
+                        retryCount = 0
                     } else {
-                        handleRetry(file, "Failed to get prediction.")
+                        handleRetry(file, "Gagal mendapatkan prediksi")
                     }
                 } else {
                     handleRetry(file, "Prediksi gagal, silakan coba lagi: ${response.message()}")
@@ -108,7 +108,7 @@ class ResultActivity : AppCompatActivity() {
         if (retryCount < maxRetry) {
             retryCount++
             Toast.makeText(this, "$errorMessage. Mengulang (${retryCount}/${maxRetry})", Toast.LENGTH_SHORT).show()
-            predictDisease(file) // Coba lagi
+            predictDisease(file)
         } else {
             Toast.makeText(this, "Gagal setelah $maxRetry percobaan. Harap coba lagi nanti.", Toast.LENGTH_LONG).show()
         }

@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.leaf.CoffeActivity">
 
-    <!-- Search View Section -->
     <com.google.android.material.search.SearchBar
         android:id="@+id/search_view"
         android:layout_width="0dp"
@@ -22,7 +21,6 @@
         app:layout_constraintTop_toTopOf="parent">
     </com.google.android.material.search.SearchBar>
 
-    <!-- RecyclerView Section -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vertical_recycler_view"
         android:layout_width="match_parent"

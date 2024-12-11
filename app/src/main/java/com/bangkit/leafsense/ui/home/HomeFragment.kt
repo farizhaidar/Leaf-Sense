@@ -84,7 +84,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             override fun onResponse(call: Call<ArticlesResponse>, response: Response<ArticlesResponse>) {
                 if (response.isSuccessful) {
                     response.body()?.data?.let { articles ->
-                        val limitedArticles = articles.filterNotNull().take(5) // Ambil hanya 5 artikel
+                        val limitedArticles = articles.filterNotNull().take(5)
                         articlesAdapter = ArticlesAdapter(limitedArticles, requireContext())
                         binding.horizontalRecyclerView.adapter = articlesAdapter
                     }

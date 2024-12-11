@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.leafsense.R
 import com.bangkit.leafsense.data.api.ApiConfig
 import com.bangkit.leafsense.data.response.ArticlesResponse
-import com.bangkit.leafsense.data.response.DataItem
 import com.bangkit.leafsense.databinding.ActivityTeaBinding
 import com.bangkit.leafsense.ui.adapter.ArticlesAdapter
 import retrofit2.Call
