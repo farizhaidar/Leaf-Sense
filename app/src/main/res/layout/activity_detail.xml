@@ -18,8 +18,7 @@
                 android:id="@+id/ivArticleImage"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:transitionName="shared_photo"
-                android:scaleType="centerCrop" />
+                android:transitionName="shared_photo" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -27,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="@color/black"
                 android:paddingTop="16dp" />
 
             <TextView
@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:paddingTop="8dp" />
 
         </LinearLayout>
