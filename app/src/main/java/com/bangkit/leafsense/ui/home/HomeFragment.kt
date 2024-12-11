@@ -2,6 +2,7 @@ package com.bangkit.leafsense.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.bangkit.leafsense.ui.leaf.CoffeActivity
 import com.bangkit.leafsense.ui.leaf.StrawberryActivity
 import com.bangkit.leafsense.ui.leaf.TeaActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,9 +34,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.bind(view)
 
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val userName = currentUser?.displayName ?: "User"
+        val userId = currentUser?.uid
 
-        binding.userText.text = "Halo $userName!"
+        val db = FirebaseFirestore.getInstance()
+        userId?.let {
+            db.collection("users").document(it)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val userName = document.getString("name") ?: "User"
+                        binding.userText.text = "Halo $userName!"
+                    } else {
+                        Log.d("Firestore", "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("Firestore", "Error getting document", exception)
+                }
+        }
 
         binding.horizontalRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
